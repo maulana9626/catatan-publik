@@ -1,297 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Public Notes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta name="description" content="Ruang catatan publik. Baca dan bagikan catatan dengan siapa saja." />
+    <title>Ruang Catatan — berbagi ide bersama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-      :root {
-        --bg: #f4f7fb;
-        --card: #ffffff;
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --text: #1f2937;
-        --muted: #6b7280;
-        --border: #e5e7eb;
-        --shadow: 0 10px 25px rgba(37, 99, 235, 0.12);
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #eef4ff, #f8fafc);
-        color: var(--text);
-      }
-
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 32px 20px 48px;
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 28px;
-      }
-
-      .brand {
-        font-size: clamp(1.6rem, 3vw, 2.3rem);
-        font-weight: 700;
-        margin: 0;
-      }
-
-      .subtitle {
-        color: var(--muted);
-        margin-top: 6px;
-      }
-
-      .badge {
-        background: var(--primary);
-        color: white;
-        padding: 10px 16px;
-        border-radius: 999px;
-        font-weight: 700;
-        box-shadow: var(--shadow);
-      }
-
-      .form-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 20px;
-        box-shadow: var(--shadow);
-        margin-bottom: 24px;
-      }
-
-      .form-card h2 {
-        margin: 0 0 14px 0;
-        font-size: 1.3rem;
-      }
-
-      form {
-        display: grid;
-        gap: 14px;
-      }
-
-      label {
-        display: grid;
-        gap: 8px;
-        font-weight: 600;
-      }
-
-      input, textarea {
-        width: 100%;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 12px 14px;
-        font-size: 1rem;
-        background: white;
-        color: var(--text);
-      }
-
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-
-      input:focus, textarea:focus {
-        outline: 2px solid rgba(37, 99, 235, 0.15);
-        border-color: var(--primary);
-      }
-
-      .button-row {
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      button {
-        cursor: pointer;
-        border: none;
-        background: var(--primary);
-        color: white;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 1rem;
-        font-weight: 700;
-        transition: 0.2s ease;
-      }
-
-      button:hover {
-        background: var(--primary-dark);
-      }
-
-      .notes-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 18px;
-      }
-
-      .note {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 18px;
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-      }
-
-      .note h3 {
-        margin: 0 0 10px;
-        font-size: 1.1rem;
-      }
-
-      .note p {
-        margin: 0;
-        line-height: 1.7;
-        color: #334155;
-        white-space: pre-wrap;
-      }
-
-      .meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--muted);
-        font-size: 0.82rem;
-        margin-top: 16px;
-      }
-
-      .empty {
-        text-align: center;
-        color: var(--muted);
-        border: 1px dashed var(--border);
-        border-radius: 18px;
-        background: rgba(255,255,255,0.4);
-        padding: 28px 16px;
-      }
-
-      @media (max-width: 640px) {
-        .header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
+      :root{color-scheme:light;--paper:#f6f7f2;--ink:#20251f;--muted:#788078;--line:#e4e8df;--green:#316b4d;--green-dark:#24563c;--pale:#eaf0e8;--white:#fff;--shadow:0 12px 40px rgba(34,54,38,.07)}
+      *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center}.topbar-inner{width:min(1120px,calc(100% - 40px));margin:auto;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:10px;font:800 17px 'Manrope',sans-serif;letter-spacing:-.5px}.brand-icon{width:32px;height:32px;border-radius:10px;background:var(--green);color:white;display:grid;place-items:center;font-size:17px}.top-note{font-size:13px;color:var(--muted)}.page{width:min(1000px,calc(100% - 40px));margin:0 auto;padding:68px 0 80px}.hero{text-align:center;margin:0 auto 38px;max-width:650px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green);background:var(--pale);border-radius:100px;padding:8px 12px;font-weight:700;font-size:12px;letter-spacing:.3px}.pulse{width:7px;height:7px;border-radius:50%;background:#48a26d;box-shadow:0 0 0 4px rgba(72,162,109,.13)}h1{font:800 clamp(38px,7vw,62px)/1.08 'Manrope',sans-serif;letter-spacing:-3px;margin:20px 0 14px}.hero p{margin:0 auto;color:var(--muted);font-size:16px;line-height:1.75;max-width:500px}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.85fr);gap:22px;align-items:start}.compose,.feed{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.compose{padding:25px;position:sticky;top:20px}.section-title{font:700 18px 'Manrope',sans-serif;letter-spacing:-.4px;margin:0}.section-hint{color:var(--muted);font-size:13px;margin:6px 0 22px}.field{display:grid;gap:8px;margin-bottom:15px}.field label{font-size:12px;font-weight:700;color:#555e55}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 13px;background:#fcfdfb;color:var(--ink);outline:none;transition:border .2s,box-shadow .2s}.field input:focus,.field textarea:focus{border-color:#7ba288;box-shadow:0 0 0 3px rgba(49,107,77,.1)}.field input::placeholder,.field textarea::placeholder{color:#a5aca4}.field textarea{resize:vertical;min-height:130px;line-height:1.6}.counter{font-size:11px;color:var(--muted);text-align:right;margin-top:-3px}.submit{border:0;border-radius:10px;background:var(--green);color:white;width:100%;padding:13px 15px;font-weight:700;display:flex;justify-content:center;align-items:center;gap:9px;transition:background .2s,transform .2s}.submit:hover{background:var(--green-dark);transform:translateY(-1px)}.submit:disabled{opacity:.55;cursor:not-allowed;transform:none}.privacy{font-size:11px;line-height:1.55;color:var(--muted);text-align:center;margin:13px 0 0}.feed{padding:24px;min-height:250px}.feed-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line)}.feed-title{font:700 17px 'Manrope',sans-serif;letter-spacing:-.3px}.feed-count{font-size:11px;color:var(--muted);background:#f3f5f1;padding:6px 9px;border-radius:30px}.notes{display:grid}.note{padding:19px 0;border-bottom:1px solid var(--line)}.note:last-child{border-bottom:0;padding-bottom:2px}.note-author{display:flex;align-items:center;gap:8px;font-weight:700;font-size:12px}.avatar{width:26px;height:26px;border-radius:50%;background:#e8efe6;color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:800}.note-date{font-size:11px;color:var(--muted);font-weight:400;margin-left:auto}.note h3{font:700 15px/1.45 'Manrope',sans-serif;margin:12px 0 6px;letter-spacing:-.2px}.note-content{font-size:13px;line-height:1.7;color:#5e675f;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.state{padding:36px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}.state-icon{font-size:26px;margin-bottom:8px}.status{border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.5;margin:0 0 16px;display:none}.status.error{display:block;color:#9e3f37;background:#fff0ee}.status.success{display:block;color:#316b4d;background:#edf6ef}.footer{text-align:center;color:#929a91;font-size:11px;margin:25px 0 0}.refresh{border:0;background:transparent;color:var(--green);font-size:11px;font-weight:700;padding:5px}.refresh:hover{text-decoration:underline}
+      @media(max-width:760px){.page{padding-top:46px}.layout{grid-template-columns:1fr}.compose{position:static}.feed{min-height:180px}.hero{margin-bottom:28px}h1{letter-spacing:-2px}}
+      @media(max-width:480px){.topbar-inner,.page{width:calc(100% - 28px)}.top-note{font-size:11px}.compose,.feed{padding:19px}.hero p{font-size:14px}}
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <div>
-          <h1 class="brand">Public Notes</h1>
-          <div class="subtitle">Semua orang bisa melihat dan menulis catatan</div>
-        </div>
-        <div class="badge">Public</div>
+    <header class="topbar"><div class="topbar-inner"><div class="brand"><span class="brand-icon">✳</span> Ruang Catatan</div><div class="top-note">Terbuka untuk semua</div></div></header>
+    <main class="page">
+      <section class="hero"><div class="eyebrow"><span class="pulse"></span> RUANG PUBLIK</div><h1>Ide kecil,<br />dibagikan bersama.</h1><p>Tulis sesuatu yang ingin kamu bagikan. Semua catatan di sini tersimpan online dan bisa dibaca siapa saja.</p></section>
+      <div class="layout">
+        <section class="compose" aria-labelledby="compose-title">
+          <h2 class="section-title" id="compose-title">Bagikan catatan</h2><p class="section-hint">Punya ide, cerita, atau pengingat? Tulis di sini.</p>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+          <form id="note-form">
+            <div class="field"><label for="author">Nama</label><input id="author" name="author" maxlength="40" placeholder="Nama atau nama panggilan" autocomplete="nickname" required /></div>
+            <div class="field"><label for="title">Judul catatan</label><input id="title" name="title" maxlength="100" placeholder="Beri judul yang singkat" required /></div>
+            <div class="field"><label for="content">Isi catatan</label><textarea id="content" name="content" maxlength="2000" placeholder="Apa yang ingin kamu bagikan?" required></textarea><div class="counter"><span id="char-count">0</span>/2000</div></div>
+            <button class="submit" id="submit-button" type="submit"><span>Terbitkan catatan</span><span aria-hidden="true">↗</span></button>
+          </form>
+          <p class="privacy">Catatan yang diterbitkan dapat dilihat siapa saja. Jangan masukkan informasi pribadi atau rahasia.</p>
+        </section>
+        <section class="feed" aria-labelledby="feed-title"><div class="feed-head"><div class="feed-title" id="feed-title">Catatan terbaru</div><button class="refresh" id="refresh-button" type="button">↻ Muat ulang</button></div><div class="notes" id="notes" aria-live="polite"><div class="state"><div class="state-icon">⌁</div>Memuat catatan…</div></div><div class="footer" id="feed-footer">Catatan terbaru dari ruang publik</div></section>
       </div>
-
-      <div class="form-card">
-        <h2>Buat Catatan Baru</h2>
-        <form id="noteForm">
-          <label>
-            Judul
-            <input type="text" id="title" maxlength="80" placeholder="Masukkan judul catatan" required />
-          </label>
-
-          <label>
-            Isi catatan
-            <textarea id="content" placeholder="Tulis isi catatan Anda..." required></textarea>
-          </label>
-
-          <div class="button-row">
-            <button type="submit">Simpan Catatan</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="notes" class="notes-grid"></div>
-    </div>
-
+    </main>
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-      const STORAGE_KEY = 'public_notes_data';
-      const notesEl = document.getElementById('notes');
-      const form = document.getElementById('noteForm');
-
-      function loadNotes() {
-        const data = localStorage.getItem(STORAGE_KEY);
-        return data ? JSON.parse(data) : [
-          {
-            id: 1,
-            title: 'Selamat datang',
-            content: 'Ini adalah catatan publik demo. Siapa pun bisa melihat dan menambah catatan di halaman ini.',
-            createdAt: new Date().toISOString()
+      (() => {
+        const config = window.PUBLIC_NOTES_CONFIG || {};
+        const form = document.getElementById('note-form');
+        const status = document.getElementById('status');
+        const notesElement = document.getElementById('notes');
+        const submitButton = document.getElementById('submit-button');
+        const configReady = config.url && config.anonKey && !config.url.includes('YOUR_') && !config.anonKey.includes('YOUR_');
+        const client = configReady && window.supabase ? window.supabase.createClient(config.url, config.anonKey) : null;
+        function showStatus(message, type) { status.textContent = message; status.className = 'status ' + type; }
+        function formatDate(value) { return new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)); }
+        function renderNotes(notes) {
+          notesElement.replaceChildren();
+          if (!notes || notes.length === 0) { const empty = document.createElement('div'); empty.className = 'state'; empty.innerHTML = '<div class="state-icon">✎</div>Belum ada catatan.<br />Jadilah yang pertama berbagi!'; notesElement.append(empty); return; }
+          for (const note of notes) {
+            const article = document.createElement('article'); article.className = 'note';
+            const byline = document.createElement('div'); byline.className = 'note-author';
+            const avatar = document.createElement('span'); avatar.className = 'avatar'; avatar.textContent = (note.author || '?').trim().charAt(0).toUpperCase();
+            const author = document.createElement('span'); author.textContent = note.author;
+            const date = document.createElement('time'); date.className = 'note-date'; date.dateTime = note.created_at; date.textContent = formatDate(note.created_at);
+            byline.append(avatar, author, date);
+            const title = document.createElement('h3'); title.textContent = note.title;
+            const content = document.createElement('p'); content.className = 'note-content'; content.textContent = note.content;
+            article.append(byline, title, content); notesElement.append(article);
           }
-        ];
-      }
-
-      function saveNotes(notes) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-      }
-
-      function renderNotes() {
-        const notes = loadNotes();
-
-        if (!notes.length) {
-          notesEl.innerHTML = '<div class="empty">Belum ada catatan. Jadilah yang pertama menulis.</div>';
-          return;
         }
-
-        notesEl.innerHTML = notes
-          .slice()
-          .reverse()
-          .map(note => {
-            const date = new Date(note.createdAt).toLocaleString('id-ID', {
-              dateStyle: 'medium',
-              timeStyle: 'short'
-            });
-
-            return `
-              <article class="note">
-                <h3>${escapeHtml(note.title)}</h3>
-                <p>${escapeHtml(note.content)}</p>
-                <div class="meta">
-                  <span>Public</span>
-                  <span>${date}</span>
-                </div>
-              </article>
-            `;
-          })
-          .join('');
-      }
-
-      function escapeHtml(str) {
-        return str
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const title = document.getElementById('title').value.trim();
-        const content = document.getElementById('content').value.trim();
-
-        if (!title || !content) return;
-
-        const notes = loadNotes();
-        notes.push({
-          id: Date.now(),
-          title,
-          content,
-          createdAt: new Date().toISOString()
+        async function loadNotes() {
+          if (!client) { notesElement.innerHTML = '<div class="state"><div class="state-icon">⚙</div>Aplikasi belum terhubung ke database.<br />Ikuti langkah konfigurasi di README untuk mengaktifkan catatan publik.</div>'; return; }
+          try {
+            const { data, error } = await client.from('notes').select('id, author, title, content, created_at').order('created_at', { ascending: false }).limit(50);
+            if (error) throw error;
+            renderNotes(data); document.getElementById('feed-footer').textContent = data.length === 50 ? 'Menampilkan 50 catatan terbaru' : `${data.length} catatan di ruang publik`;
+          } catch (error) { notesElement.innerHTML = '<div class="state"><div class="state-icon">!</div>Catatan belum dapat dimuat. Periksa konfigurasi database lalu coba lagi.</div>'; console.error('Gagal memuat catatan:', error.message); }
+        }
+        document.getElementById('content').addEventListener('input', event => { document.getElementById('char-count').textContent = event.target.value.length; });
+        document.getElementById('refresh-button').addEventListener('click', loadNotes);
+        form.addEventListener('submit', async event => {
+          event.preventDefault();
+          if (!client) { showStatus('Database belum dikonfigurasi. Ikuti petunjuk di README terlebih dahulu.', 'error'); return; }
+          const values = new FormData(form);
+          const note = { author: String(values.get('author')).trim(), title: String(values.get('title')).trim(), content: String(values.get('content')).trim() };
+          if (!note.author || !note.title || !note.content) { showStatus('Nama, judul, dan isi catatan wajib diisi.', 'error'); return; }
+          submitButton.disabled = true; submitButton.querySelector('span').textContent = 'Menerbitkan…'; status.className = 'status';
+          try {
+            const { error } = await client.from('notes').insert(note);
+            if (error) throw error;
+            form.reset(); document.getElementById('char-count').textContent = '0'; showStatus('Catatan berhasil diterbitkan dan sekarang terlihat publik.', 'success'); await loadNotes();
+          } catch (error) { console.error('Gagal menerbitkan catatan:', error.message); showStatus('Catatan belum bisa diterbitkan. Periksa koneksi dan pengaturan database, lalu coba lagi.', 'error'); }
+          finally { submitButton.disabled = false; submitButton.querySelector('span').textContent = 'Terbitkan catatan'; }
         });
-
-        saveNotes(notes);
-        renderNotes();
-        form.reset();
-      });
-
-      renderNotes();
+        if (!client) showStatus('Database belum terhubung. Selesaikan konfigurasi Supabase sesuai README agar publik bisa berbagi catatan.', 'error');
+        loadNotes(); window.setInterval(() => { if (!document.hidden) loadNotes(); }, 30000);
+      })();
     </script>
   </body>
 </html>
